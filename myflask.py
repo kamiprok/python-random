@@ -1,13 +1,15 @@
 from flask import Flask
-import psutil as ps
+from datetime import datetime
+from random import randrange
+
 
 app = Flask(__name__)
-
-memo = int(ps.virtual_memory().used / 1024 ** 3)
 
 
 @app.route('/')
 def index():
+    now = datetime.now()
+    rand = randrange(1, 101)
     hello_world = 'Hello World!'
     return f'''
     <html>
@@ -16,12 +18,15 @@ def index():
         </head>
         <body>
             <h1>{hello_world}</h1>
-            <h2>{memo}</h2>
+            <h2>{now}</h2>
+            <h3>{rand}</h3>
         </body>
     </html>'''
 
 
-# C:\Users\KAMSON-PC\PycharmProjects\python-random\set FLASK_APP=my-flask.py
+app.run()
+
+# C:\Users\KAMSON-PC\PycharmProjects\python-random\set FLASK_APP=myflask.py
 # flask run
 # or
 # py -m flask run
