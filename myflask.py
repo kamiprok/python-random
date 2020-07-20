@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from datetime import datetime
 from random import randrange
 
@@ -11,23 +11,19 @@ def index():
     now = datetime.now()
     rand = randrange(1, 101)
     hello_world = 'Hello World!'
-    return f'''
-    <html>
-        <head>
-            <title>Kroos Discord Bot</title>
-        </head>
-        <body>
-            <h1>{hello_world}</h1>
-            <h2>{now}</h2>
-            <h3>{rand}</h3>
-        </body>
-    </html>'''
+    return render_template('index.html', now=now, rand=rand, say=hello_world)
 
 
-app.run()
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+app.run(host='0.0.0.0', port=8080)
 
 # C:\Users\KAMSON-PC\PycharmProjects\python-random\set FLASK_APP=myflask.py
 # flask run
 # or
 # py -m flask run
 # flask run --host=0.0.0.0
+# with app.run() you can run flask app my py myflask.py instead of setting variable and running flask run
