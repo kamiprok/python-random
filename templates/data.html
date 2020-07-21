@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About</title>
+    <title>Data</title>
 </head>
 <body>
-<h3>about me ...</h3>
+<h3>Data</h3>
+{%for i in range(0, len)%}
+<li>{{list[i]}}</li>
+{%endfor%}
+
 <a href="/">Back</a>
 </body>
 </html>
