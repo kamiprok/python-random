@@ -22,16 +22,21 @@ def about():
 
 @app.route('/data')
 def data():
+    list = []
     client = MongoClient('MongoDBConnectionString')
     db = client.MongoDB
     collection = db.collection
-    list = []
     for i in collection.find({}):
         list.append(i)
+
+    # doc = 'Document:'
+    # for i in collection.find({}):
+    #     doc = f'{doc} {i}\n'
+    # print(doc)
     return render_template('data.html', len=len(list), list=list)
 
 
-app.run(host='0.0.0.0', port=8080)
+app.run(debug=True, host='0.0.0.0', port=8080)
 
 # C:\Users\KAMSON-PC\PycharmProjects\python-random\set FLASK_APP=myflask.py
 # flask run

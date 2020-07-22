@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Data</title>
-</head>
-<body>
-<h3>Data</h3>
-{%for i in range(0, len)%}
-<li>{{list[i]}}</li>
-{%endfor%}
+    <head>
+        <meta charset="UTF-8">
+        <title>Data</title>
+    </head>
+    <body>
+        <p>
+            <h3>Data</h3>
+                {%for i in range(0, len)%}
+                    <li>{{list[i]}}</li>
+                {%endfor%}
+        </p>
 
-<a href="/">Back</a>
-</body>
+        <p>
+            <a href="/">Back</a>
+        </p>
+    </body>
 </html>
