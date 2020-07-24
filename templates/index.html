@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flask webpage app</title>
-</head>
-<body>
-    <h1>{{say}}</h1>
-    <h2>{{now}}</h2>
-    <h3>{{rand}}</h3>
-    <a href="/about">About Me</a>
-    <a href="/data">Data</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Flask webpage app{% endblock %}
+{% block content %}
+<h4>{{say}}</h4>
+<h5>{{now}}</h5>
+<h6>{{rand}}</h6>
+<p></p>
+<a href="/data">Data</a>
+<a href="/collection">Collection</a>
+{% endblock %}

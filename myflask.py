@@ -1,8 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from datetime import datetime
 from random import randrange
 from pymongo import MongoClient
 
+MongoDBConnectionString = 'MongoDBConnectionString'
+client = MongoClient(MongoDBConnectionString, serverSelectionTimeoutMS=5000)
+db = client.MongoDB
+people = db.people
+collection = db.collection
 
 app = Flask(__name__)
 
@@ -15,25 +20,40 @@ def index():
     return render_template('index.html', now=now, rand=rand, say=hello_world)
 
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/data')
+@app.route('/data', methods=['GET'])
 def data():
+    return render_template('data.html', people=people)
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form['input']
+    if name == '':
+        print('empty string')
+        return redirect('/data')
+    else:
+        name = {"name": name}
+        people.insert_one(name)
+        return redirect('/data')
+
+
+@app.route('/clear', methods=['POST'])
+def clear():
+    for document in people.find():
+        people.delete_one(document)
+    return redirect('/data')
+
+
+@app.route('/collection')
+def col():
     list = []
-    client = MongoClient('MongoDBConnectionString')
-    db = client.MongoDB
-    collection = db.collection
     for i in collection.find({}):
         list.append(i)
-
     # doc = 'Document:'
     # for i in collection.find({}):
     #     doc = f'{doc} {i}\n'
     # print(doc)
-    return render_template('data.html', len=len(list), list=list)
+    return render_template('collection.html', len=len(list), list=list)
 
 
 app.run(debug=True, host='0.0.0.0', port=8080)

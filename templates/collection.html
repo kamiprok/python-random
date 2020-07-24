@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Collection{% endblock %}
+{% block content %}
+<h4>All documents in collection</h4>
+{%for i in range(0, len)%}
+    <li>{{list[i]}}</li>
+{%endfor%}
+<p></p>
+<a href="/">Back</a>
+{% endblock %}
