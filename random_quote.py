@@ -8,4 +8,4 @@ print(response.text)
 to_dict = json.loads(response.text)
 
 print(to_dict)
-print(to_dict['quote'])
+print(f'"{to_dict["quote"]}" - {to_dict["author"]}')
