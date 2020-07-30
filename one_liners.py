@@ -67,3 +67,5 @@ def sum_second():
 clear()
 print('Welcome to 10 Awesome Pythonic One Lienrs\n')
 menu()
+# static to active, let user input all variables, ex. sum_second: enter list of vars (default[1,2,3,4,5,6] >
+# if no option or bad input use default, else use user inputs
